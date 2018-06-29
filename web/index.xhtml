@@ -1,12 +1,53 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Sistema Essalud</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north">
+                <h2>Sistema Ejemplo Essalud</h2>
+                <f:view>
+                    <h:form>
+                        <h:commandLink value="Cerrar Sesion" action="#{menu.salir}" />
+                    </h:form>
+                </f:view>
+            </p:layoutUnit>
+            <p:layoutUnit position="west" resizable="true" collapsible="true" header="Menu">
+                <div id="menu">
+                <f:view>
+                    <h:form>
+                        <p:menu>
+                            <p:submenu label="Archivo">
+                                <p:menuitem value="Medico" actionListener="#{menu.registrar_medico}" />
+                                <p:menuitem value="Paciente" actionListener="#{menu.registrar_paciente}" />
+                            </p:submenu>
+                            <p:separator/>
+                            <p:submenu label="Archivo">
+                                <p:menuitem value="Cita" actionListener="#{menu.registrar_cita}" />
+                            </p:submenu>
+                        </p:menu>>
+                    </h:form>
+                </div>
+            </p:layoutUnit>
+            <p:layoutUnit position="east" resizable="true">
+                <p>Área de Noticias o Eventos</p>
+                <p:calendar mode="inline"/>
+            </p:layoutUnit>
+            <p:layoutUnit position="center">
+                <div id="contenido">
+                    <ui:include src="${menu.contenido}"/>
+                </div>
+            </p:layoutUnit>
+            <p:layoutUnit position="south" resizable="true">
+                <p>Área de Copyright</p>
+            </p:layoutUnit>
+        </p:layout>
     </h:body>
 </html>
 
