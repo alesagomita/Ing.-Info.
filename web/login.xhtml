@@ -6,10 +6,35 @@ xmlns:f="http://java.sun.com/jsf/core"
 xmlns:ui="http://java.sun.com/jsf/facelets"
 xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Acceso al Sistema</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <f:view>
+            <h:form>
+                <p:panel header="Ingresar Credenciales">
+                    <p:growl></p:growl>
+                    <table>
+                        <tr>
+                            <td>Usuario</td>
+                            <td>
+                                <h:inputText id="txtUsuario" value="#{usuario.user}" required="true" requiredMessage="Debe Ingresar Usuario" autocomplete="off"></h:inputText>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Clave</td>
+                            <td>
+                                <h:inputSecret id="txtPassword" value="#{usuario.pass}" required="true" requiredMessage="Debe Ingresar Clave" autocomplete="off"></h:inputSecret>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h:commandButton id="cbIngresar" value="Ingresar" title="Entrar" action="#{usuario.validarAcceso}"></h:commandButton>
+                            </td>
+                        </tr>
+                    </table>
+                </p:panel>
+            </h:form>
+        </f:view>
     </h:body>
 </html>
 
