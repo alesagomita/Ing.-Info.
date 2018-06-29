@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/root/NetBeansProjects/Prueba/src/java/capa/negocio/Menu.java</file>
+            <file>file:/root/NetBeansProjects/Prueba/web/registrar_cita.xhtml</file>
+            <file>file:/root/NetBeansProjects/Prueba/web/registrar_paciente.xhtml</file>
+            <file>file:/root/NetBeansProjects/Prueba/src/java/capa/negocio/Usuario.java</file>
+            <file>file:/root/NetBeansProjects/Prueba/web/WEB-INF/web.xml</file>
+            <file>file:/root/NetBeansProjects/Prueba/web/Bienvenido.xhtml</file>
+            <file>file:/root/NetBeansProjects/Prueba/src/java/capa/negocio/Cita.java</file>
+            <file>file:/root/NetBeansProjects/Prueba/src/java/capa/negocio/Paciente.java</file>
+            <file>file:/root/NetBeansProjects/Prueba/web/registrar_medico.xhtml</file>
+            <file>file:/root/NetBeansProjects/Prueba/src/java/capa/negocio/Medico.java</file>
+            <file>file:/root/NetBeansProjects/Prueba/src/conf/MANIFEST.MF</file>
+            <file>file:/root/NetBeansProjects/Prueba/web/WEB-INF/faces-config.xml</file>
+            <file>file:/root/NetBeansProjects/Prueba/web/index.xhtml</file>
+            <file>file:/root/NetBeansProjects/Prueba/web/login.xhtml</file>
+        </group>
+    </open-files>
+</project-private>
