@@ -13,6 +13,10 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -56,15 +60,9 @@ public class Paciente implements Serializable {
     
     public void of_Guardar(){
         FacesContext context = FacesContext.getCurrentInstance();
-        try {
-            this.Dato.of_Guardar(Entidad);
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
-                    Entidad.getApellidos(), "Guardado Correctamente"));
-        } catch (SQLException e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, 
-                    Entidad.getApellidos(), e.getMessage()));
-            e.printStackTrace();
-        }
+        this.Dato.of_Guardar(Entidad);
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                Entidad.getApellidos(), "Guardado Correctamente"));
     }
     
     public void of_ListarPacientes(){

@@ -16,21 +16,20 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *  *
  * @author CHRISTHIAN
  */
 public class dPaciente {
-    
+
     private Conexion miDB;
-    
-    public void of_Guardar(ePaciente xObj){
-        
+
+    public void of_Guardar(ePaciente xObj) {
+
         PreparedStatement psmt;
         ResultSet rs;
         String SQL;
-        
+
         this.miDB = new Conexion();
         this.miDB.ConectaJNDI();
         SQL = "Select pa_paciente_insertar(?, ?, ?, ?, ?, ?) as id_paciente";
@@ -51,27 +50,27 @@ public class dPaciente {
             psmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             this.miDB.DesconectarJNDI();
         }
-        
+
     }
-    
-    public List<ePaciente> of_Listar(){
-        
+
+    public List<ePaciente> of_Listar() {
+
         List<ePaciente> rLista = new ArrayList<>();
         Statement smt;
         String SQL;
         ResultSet rs;
         ePaciente xObj;
-        
+
         this.miDB = new Conexion();
         this.miDB.ConectaJNDI();
         SQL = "Select * from paciente";
-        
-        smt = this.miDB.getCn().createStatement();
-        smt.executeQuery(SQL);
+
         try {
+            smt = this.miDB.getCn().createStatement();
+            smt.executeQuery(SQL);
             rs = smt.getResultSet();
             while (rs.next()) {
                 xObj = new ePaciente();
@@ -88,11 +87,11 @@ public class dPaciente {
             smt.close();
         } catch (SQLException ex) {
             Logger.getLogger(dPaciente.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
+        } finally {
             this.miDB.DesconectarJNDI();
         }
         return rLista;
-        
+
     }
-    
+
 }
