@@ -5,10 +5,14 @@
  */
 package capa.negocio;
 
+import capa.datos.dPaciente;
+import capa.entidad.ePaciente;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -18,70 +22,53 @@ import java.util.Date;
 @SessionScoped
 public class Paciente implements Serializable {
 
+    private ePaciente Entidad = new ePaciente();
+    private dPaciente Dato = new dPaciente();
+    private List<ePaciente> listadoPacientes;
     
-    private String apellidos;
-    private String nombres;
-    private String direccion;
-    private String dni;
-    private String telf_fijo;
-    private Date fecha_nac;
-    
-    public Paciente(String apellidos, String nombres, String direccion, String dni, String telf_fijo, Date fecha_nac) {
+    public Paciente(){
         
-        this.apellidos = apellidos;
-        this.nombres = nombres;
-        this.direccion = direccion;
-        this.dni = dni;
-        this.telf_fijo = telf_fijo;
-        this.fecha_nac = fecha_nac;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public ePaciente getEntidad() {
+        return Entidad;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setEntidad(ePaciente Entidad) {
+        this.Entidad = Entidad;
     }
 
-    public String getNombres() {
-        return nombres;
+    public dPaciente getDato() {
+        return Dato;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setDato(dPaciente Dato) {
+        this.Dato = Dato;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public List<ePaciente> getListadoPacientes() {
+        return listadoPacientes;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setListadoPacientes(List<ePaciente> listadoPacientes) {
+        this.listadoPacientes = listadoPacientes;
     }
-
-    public String getDni() {
-        return dni;
+    
+    public void of_Guardar(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        try {
+            this.Dato.of_Guardar(Entidad);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
+                    Entidad.getApellidos(), "Guardado Correctamente"));
+        } catch (SQLException e) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, 
+                    Entidad.getApellidos(), e.getMessage()));
+            e.printStackTrace();
+        }
     }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
-    public String getTelf_fijo() {
-        return telf_fijo;
-    }
-
-    public void setTelf_fijo(String telf_fijo) {
-        this.telf_fijo = telf_fijo;
-    }
-
-    public Date getFecha_nac() {
-        return fecha_nac;
-    }
-
-    public void setFecha_nac(Date fecha_nac) {
-        this.fecha_nac = fecha_nac;
+    
+    public void of_ListarPacientes(){
+        this.listadoPacientes = this.Dato.of_Listar();
     }
     
     
