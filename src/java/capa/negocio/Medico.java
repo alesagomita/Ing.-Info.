@@ -5,9 +5,13 @@
  */
 package capa.negocio;
 
+import capa.datos.dMedico;
+import capa.entidad.eMedico;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -17,49 +21,53 @@ import java.io.Serializable;
 @SessionScoped
 public class Medico implements Serializable {
 
-    private String apellidos;
-    private String nombres;
-    private String dni;
-    private String email;
-
-    public Medico(String apellidos, String nombres, String dni, String email) {
-        this.apellidos = apellidos;
-        this.nombres = nombres;
-        this.dni = dni;
-        this.email = email;
-
+    private eMedico Entidad = new eMedico();
+    private dMedico Dato = new dMedico();
+    private List<eMedico> listadoMedicos;
+    
+    public Medico(){
+        
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public eMedico getEntidad() {
+        return Entidad;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setEntidad(eMedico Entidad) {
+        this.Entidad = Entidad;
     }
 
-    public String getNombres() {
-        return nombres;
+    public dMedico getDato() {
+        return Dato;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setDato(dMedico Dato) {
+        this.Dato = Dato;
     }
 
-    public String getDni() {
-        return dni;
+    public List<eMedico> getListadoMedicos() {
+        return listadoMedicos;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
+    public void setListadoMedicos(List<eMedico> listadoMedicos) {
+        this.listadoMedicos = listadoMedicos;
     }
-
-    public String getEmail() {
-        return email;
+    
+    public void of_Guardar(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        try {
+            this.Dato.of_Guardar(Entidad);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
+                    Entidad.getApellidos(), "Guardado Correctamente"));
+        } catch (SQLException e) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, 
+                    Entidad.getApellidos(), e.getMessage()));
+            e.printStackTrace();
+        }
     }
-
-    public void setEmail(String email) {
-        this.email = email;
+    
+    public void of_ListarMedicos(){
+        this.listadoMedicos = this.Dato.of_Listar();
     }
 
 }
